@@ -12,6 +12,33 @@ const grisha = userFactory('instructor', 'Grisha', 'software engineer', 10000);
 const vasea = userFactory('student', 'Vasea', '',0,'Upper-Intermediate');
 console.log(grisha.toString());
 console.log(vasea.toString());
+
+//Singleton
+
+const Singleton = (() => {
+ let course;
+
+ const assignCourse = () => {
+     const course = new Object('Php');
+     return course;
+ }
+
+ return {
+     getInstance : () =>{
+        if(!course ){
+            course = assignCourse;
+        }
+        return course;
+     }
+ }
+})();
+
+const buyFirstTime = Singleton.getInstance();
+const buySeccondTime = Singleton.getInstance();
+
+if(buyFirstTime === buySeccondTime){ 
+   console.log("Buy the course"); 
+}
 /*
 // Old syntax:
 var Course = function(author, title){
